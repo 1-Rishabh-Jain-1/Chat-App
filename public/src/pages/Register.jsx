@@ -17,6 +17,12 @@ function Register() {
     confirmPassword: ""
   });
 
+  useEffect(() => {
+    if(localStorage.getItem('chat-app-user')) {
+      navigate('/');
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if(handleValidation()) {
@@ -82,10 +88,26 @@ function Register() {
             <img src={Logo} alt='Logo' />
             <h1>Snappy</h1>
           </div>
-          <input type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} />
-          <input type='email' placeholder='Email' name='email' onChange={(e) => handleChange(e)} />
-          <input type='password' placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
-          <input type='password' placeholder='Confirm Password' name='confirmPassword' onChange={(e) => handleChange(e)} />
+          <input
+            type='text'
+            placeholder='Username'
+            name='username'
+            onChange={(e) => handleChange(e)} />
+          <input
+            type='email'
+            placeholder='Email'
+            name='email'
+            onChange={(e) => handleChange(e)} />
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            onChange={(e) => handleChange(e)} />
+          <input
+            type='password'
+            placeholder='Confirm Password'
+            name='confirmPassword'
+            onChange={(e) => handleChange(e)} />
           <button type='submit'>Create User</button>
           <span>Already have an account? <Link to='/login'>Login</Link></span>
         </form>
