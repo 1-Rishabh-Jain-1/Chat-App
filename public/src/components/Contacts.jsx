@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/logo.svg';
 
-export default function Contacts({ contacts, currentUser }) {
+export default function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+
   useEffect(() => {
     if (currentUser) {
       setCurrentUserImage(currentUser.avatarImage);
       setCurrentUserName(currentUser.username);
     }
   }, [currentUser]);
-  const changeCurrentChat = (index, contact) => { };
+
+  const changeCurrentChat = (index, contact) => {
+    setCurrentSelected(index);
+    changeChat(contact);
+  };
+
   return (
     <>
       {currentUserImage && currentUserName && (
@@ -25,7 +31,9 @@ export default function Contacts({ contacts, currentUser }) {
             {
               contacts.map((contact, index) => {
                 return (
-                  <div className={`contact ${index === currentSelected ? "selected" : ""}`} key={index}>
+                  <div className={`contact ${index === currentSelected ? "selected" : ""}`}
+                    key={index}
+                    onClick={() => changeCurrentChat(index, contact)}>
                     <div className="avatar">
                       <img src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt='avatar' />
                     </div>
@@ -75,31 +83,39 @@ const Container = styled.div`
     align-items: center;
     overflow: auto;
     gap: 0.8rem;
-  }
-  .contact {
-    background-color: #ffffff39;
-    min-height: 5rem;
-    width: 90%;
-    cursor: pointer;
-    border-radius: 0.2rem;
-    padding: 0.4rem;
-    gap: 1rem;
-    align-items: center;
-    display: flex;
-    transition: 0.5s ease-in-out;
-    .avatar {
-      img {
-        height: 3rem;
+    &::-webkit-scrollbar {
+      width: 0.3rem;
+      &-thumb {
+        background-color: #ffffff39;
+        width: 0.1rem;
+        border-radius: 1rem;
       }
     }
-    .username {
-      h3 {
-        color: white;
+    .contact {
+      background-color: #ffffff34;
+      min-height: 5rem;
+      width: 90%;
+      cursor: pointer;
+      border-radius: 0.2rem;
+      padding: 0.4rem;
+      gap: 1rem;
+      align-items: center;
+      display: flex;
+      transition: 0.5s ease-in-out;
+      .avatar {
+        img {
+          height: 3rem;
+        }
+      }
+      .username {
+        h3 {
+          color: white;
+        }
       }
     }
-  }
-  .selected {
-    bakground-color: #9186f3;
+    .selected {
+      background-color: #9a86f3;
+    }
   }
   .current-user {
     background-color: #0d0d30;
