@@ -31,7 +31,7 @@ export default function ChatInput({handleSendMessage}) {
             <div className="button-container">
                 <div className="emoji">
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
-                    {showEmojiPicker && <Picker className='emoji-picker-react' onEmojiClick={handleEmojiClick} />}
+                    {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
                 </div>
             </div>
             <form className='input-container' onSubmit={(e) => sendChat(e)}>
@@ -100,7 +100,6 @@ const Container = styled.div`
         background-color: #ffffff34;
         input {
             width: 90%;
-            height: 60%;
             background-color: transparent;
             color: white;
             border: none;
