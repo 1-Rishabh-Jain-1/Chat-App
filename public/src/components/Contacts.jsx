@@ -85,6 +85,7 @@ const Container = styled.div`
     gap: 0.8rem;
     &::-webkit-scrollbar {
       width: 0.3rem;
+      height: 0.3rem;
       &-thumb {
         background-color: #ffffff39;
         width: 0.1rem;
