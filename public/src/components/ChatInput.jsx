@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Picker from 'emoji-picker-react';
+import EmojiPicker from 'emoji-picker-react';
 import { IoMdSend } from 'react-icons/io';
 import { BsEmojiSmileFill } from 'react-icons/bs';
 
@@ -31,12 +31,12 @@ export default function ChatInput({handleSendMessage}) {
             <div className="button-container">
                 <div className="emoji">
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
-                    {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
+                    {showEmojiPicker && <EmojiPicker height={400} className='emoji-picker-react' onEmojiClick={handleEmojiClick}    />}
                 </div>
             </div>
             <form className='input-container' onSubmit={(e) => sendChat(e)}>
                 <input type='text' placeholder='Type your message here...' value={msg} onChange={(e) => setMsg(e.target.value)} />
-                <button className="submit">
+                <button className="submit" onClick={handleEmojiPickerHideShow}>
                     <IoMdSend />
                 </button>
             </form>
@@ -63,12 +63,18 @@ const Container = styled.div`
                 color: #ffff07c8;
                 cursor: pointer;
             }
-            .emoji-picker-react {
+            aside.EmojiPickerReact.epr-main {
                 position: absolute;
-                top: -350px;
+                top: -430px;
                 background-color: #080420;
                 box-shadow: 0 5px 10px #9a86f3;
                 border-color: #9a86f3;
+                .epr-emoji-category-label {
+                    background-color: #080420;
+                }
+                .epr-search-container input.epr-search {
+                    background-color: #080420;
+                }
                 .emoji-scroll-wrapper::-webkit-scrollbar {
                     background-color: #080420;
                     width: 5px;
