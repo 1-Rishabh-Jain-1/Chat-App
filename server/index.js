@@ -9,7 +9,7 @@ const app = express();
 require('dotenv').config();
 
 const corsOptions = {
-    origin: 'https://chat-app-fe-plum.vercel.app/',
+    origin: 'https://chat-app-fe-plum.vercel.app',
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
