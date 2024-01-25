@@ -1,4 +1,4 @@
-export const host = "https://chat-app-be-orpin.vercel.app";
+export const host = "https://chat-app-7npvtjn4j-1-rishabh-jain-1s-projects.vercel.app/";
 export const registerRoute = `${host}/api/auth/register`;
 export const loginRoute = `${host}/api/auth/login`;
 export const setAvatarRoute = `${host}/api/auth/setAvatar`;
