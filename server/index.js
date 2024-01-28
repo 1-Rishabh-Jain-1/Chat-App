@@ -8,12 +8,12 @@ const socket = require('socket.io');
 const app = express();
 require('dotenv').config();
 
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//     origin: '*',
+//     optionsSuccessStatus: 200,
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+// };
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);
