@@ -8,12 +8,12 @@ const socket = require('socket.io');
 const app = express();
 require('dotenv').config();
 
-// const corsOptions = {
-//     origin: '*',
-//     optionsSuccessStatus: 200,
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-// };
-app.use(cors());
+const corsOptions = {
+    origin: 'https://chat-app-fe-plum.vercel.app',
+    optionsSuccessStatus: 200,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);
