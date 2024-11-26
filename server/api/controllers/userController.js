@@ -28,8 +28,10 @@ module.exports.register = async (req, res, next) => {
 };
 
 module.exports.login = async (req, res, next) => {
+  console.log('Hello there')
     try {
         const { username, password } = req.body;
+        console.log(username, password)
 
         const user = await User.findOne({ username });
         if(!user) return res.json({msg: "Username doesn't exist.", status: false});
@@ -40,13 +42,18 @@ module.exports.login = async (req, res, next) => {
             return res.json({msg: "Incorrect username or password.", status: false});
         }
         delete user.password;
+
+        console.log('user', user)
         
         return res.json({
             status: true,
             user
         });
     } catch(ex) {
-        next(ex);
+      return res.json({
+        status: false,
+        user: null
+      });
     }
 };
 
