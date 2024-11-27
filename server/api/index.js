@@ -11,6 +11,7 @@ require('dotenv').config();
 const corsOptions = {
     origin: ['https://chat-app-fe-1-rishabh-jain-1s-projects.vercel.app',
         'https://chat-app-fe-plum.vercel.app'],
+    credentials: true,
     optionsSuccessStatus: 200,
 };
 
@@ -34,8 +35,9 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: 'https://chat-app-fe-plum.vercel.app',
-        credentials: true
+        origin: ['https://chat-app-fe-1-rishabh-jain-1s-projects.vercel.app',
+            'https://chat-app-fe-plum.vercel.app'],
+        credentials: true,
     }
 });
 
