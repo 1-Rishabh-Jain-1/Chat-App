@@ -12,13 +12,14 @@ const corsOptions = {
     origin: 'https://chat-app-fe-plum.vercel.app',
     optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);
 app.use('/api/messages', messageRoutes);
 
-app.get('/', (req, res) => {res.send('Hello World')})
+app.get('/', (req, res) => { res.send('Hello World') })
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Connected to MongoDb")
@@ -46,7 +47,7 @@ io.on("connection", (socket) => {
     });
     socket.on("send-msg", (data) => {
         const sendUserSocket = onlineUsers.get(data.to);
-        if(sendUserSocket) {
+        if (sendUserSocket) {
             socket.to(sendUserSocket).emit("msg-receive", data.message);
         }
     })
