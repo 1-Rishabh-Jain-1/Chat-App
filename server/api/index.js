@@ -11,15 +11,14 @@ require('dotenv').config();
 const corsOptions = {
     origin: 'https://chat-app-fe-plum.vercel.app',
     optionsSuccessStatus: 200,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);
 app.use('/api/messages', messageRoutes);
 
-app.get('/', (req, res) => {res.send('Hello')})
+app.get('/', (req, res) => {res.send('Hello World')})
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Connected to MongoDb")
