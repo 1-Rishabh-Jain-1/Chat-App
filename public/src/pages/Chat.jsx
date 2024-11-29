@@ -28,10 +28,25 @@ function Chat() {
 
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host);
-      socket.current.emit("add-user", currentUser._id)
+      socket.current = io(host, {
+        transports: ["websocket"],
+        upgrade: false,
+      });
+  
+      socket.current.on("connect", () => {
+        console.log("Socket connected:", socket.current.id);
+        socket.current.emit("add-user", currentUser._id);
+      });
+  
+      socket.current.on("connect_error", (err) => {
+        console.error("Socket connection error:", err.message);
+      });
+  
+      socket.current.on("disconnect", () => {
+        console.log("Socket disconnected.");
+      });
     }
-  }, [currentUser])
+  }, [currentUser]);
 
   useEffect(() => {
     const fetchContacts = async () => {
